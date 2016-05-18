@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html ng-app="App" ng-cloak>
+	<head>
+	<script src="js/angular.min.js"></script>
+		<title>
+		</title>
+	</head>
+	<body>
+		<div ng-controller="player">
+			<table>
+				<th>Adventure Log:</th>
+				<th>Encounter</th>
+				<th></th>
+				<tr><td><p ng-bind="adventurelog"></p></td>
+					<td><image style="width:128px; height:128px" src="{{monster[enemy].profile_pic}}"/></td>
+					<td>
+						<div ng-hide="player_status != 'fighting'">
+                        {{"Enemies Left: " + wave_num}}
+                    	<br>
+						{{"Enemy HP: " + monster[enemy].health}}
+						</div>
+						<br>
+						{{"Status: " + player_status}}
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<table>
+							<th>Inventory:</th>
+							<tr ng-repeat-start="item in inventory">
+								<td>
+								{{item.itemname}}
+								</td>
+								<td>
+								{{item.number}}
+								</td>
+							</tr>
+							<tr ng-repeat-end>
+							</tr>
+						</table>
+					</td>
+					<td>
+					<table>
+						<th>Actions:</th>
+						<tr>
+							<td>
+								<button ng-click="attack()" ng-disabled="player_status == ''">Attack</button>
+								</br>
+								<button ng-click="encounter()" ng-disabled="player_status == 'fighting'">Explore</button>
+								<button ng-click="useItem()">Use Item</button>
+								</br>
+								<button ng-click="reset_g()"> Reset</button>
+							</td>
+						</tr>
+					</table>
+					</td>
+					<td>
+					<table>
+						<th>Stats:</th>
+						<tr><td>{{"Name: " + stats.name}}</td></tr>
+						<tr><td>{{"HP: " + stats.hp}}</td></tr>
+						<tr><td>{{"Attack: " + stats.attack}}</td></tr>
+						<tr><td>{{"Level: " + stats.level}}</td></tr>
+						<!--<tr><td>{{"Experience: " + stats.experience}}</td></tr>
+						-->
+					</table>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<script src="js/angularjs.js"></script>
+	</body>
+</html>
